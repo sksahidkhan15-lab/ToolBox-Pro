@@ -1863,3 +1863,348 @@ body[data-theme="dark"] .calc-btn.action-btn {
     font-size: 0.95rem;
   }
 }
+
+/* ================= PDF QR CODE EDITOR STYLES ================= */
+.pdf-editor-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.pdf-qr-workspace {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-body);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.pdf-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 8px;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--border-subtle);
+}
+
+.page-indicator, .zoom-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  padding: 0 4px;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+}
+
+.svg-btn-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.btn-active {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+}
+
+/* PDF Viewer Scroll Area */
+.pdf-viewer-scroll-wrap {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  background: #64748b;
+  position: relative;
+  min-height: 440px;
+}
+
+body[data-theme="dark"] .pdf-viewer-scroll-wrap {
+  background: #1e293b;
+}
+
+.pdf-page-container {
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  display: inline-block;
+  user-select: none;
+}
+
+#pdf-render-canvas {
+  display: block;
+}
+
+.pdf-overlay-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.pdf-overlay-layer.crosshair-mode {
+  cursor: crosshair;
+}
+
+/* Manual Selection Rectangle */
+.manual-selection-box {
+  position: absolute;
+  border: 2px dashed #0284c7;
+  background: rgba(2, 132, 199, 0.2);
+  pointer-events: none;
+  z-index: 25;
+}
+
+/* Interactive QR Element Box */
+.qr-element-box {
+  position: absolute;
+  border: 2px solid #0284c7;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+  cursor: move;
+  z-index: 20;
+  touch-action: none;
+  box-sizing: border-box;
+  transform-origin: center center;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.qr-element-box.cover-original {
+  background-color: #ffffff;
+}
+
+.qr-element-box.selected {
+  border: 2.5px solid #2563eb;
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.7);
+  z-index: 30;
+}
+
+.qr-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.qr-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.qr-badge-type {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.qr-resize-handle {
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  width: 14px;
+  height: 14px;
+  background: #2563eb;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  cursor: nwse-resize;
+  z-index: 35;
+}
+
+.qr-rotate-indicator {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background: #f59e0b;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1.5px solid #ffffff;
+  font-weight: bold;
+  z-index: 35;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating Mobile-Friendly Selection Toolbar */
+.qr-floating-toolbar {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-float);
+  padding: 10px 14px;
+  margin: 10px 14px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+  animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.qr-toolbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qr-toolbar-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.btn-tool-close {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.qr-toolbar-buttons {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.btn-action-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
+  background: var(--bg-body);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+  min-height: 38px;
+}
+
+.btn-action-pill:active {
+  transform: scale(0.96);
+}
+
+.btn-action-pill.pill-danger {
+  color: #dc2626;
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+/* Modal for QR Config */
+.modal-qr-dialog {
+  max-width: 440px;
+}
+
+.qr-modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 14px;
+}
+
+.qr-tab-btn {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.qr-tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.qr-modal-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+  gap: 6px;
+}
+
+.qr-preview-box {
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.qr-preview-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.pdf-status-bar {
+  padding: 8px 14px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+

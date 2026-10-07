@@ -30,20 +30,20 @@ const translations = {
     heroTitle: "Work Smarter, Not Harder",
     heroSubtitle: "All the useful tools you need in one app.",
     heroActionBtn: "Compress Image",
-    exploreAllTools: "Explore 16 Tools",
+    exploreAllTools: "Explore 17 Tools",
     searchPlaceholder: "Search any tool (e.g. Image, GST, QR, PDF)...",
     quickActions: "Quick Actions",
     recentTools: "Recently Used",
     popularTools: "Popular Tools",
-    viewAll: "View All (16)",
+    viewAll: "View All (17)",
     clear: "Clear",
     starFeature: "POPULAR",
     openTool: "Open Tool →",
-    allToolsTitle: "All 16 Tools",
+    allToolsTitle: "All 17 Tools",
     allToolsSubtitle: "Select a category or tap any utility to begin.",
-    catAll: "All (16)",
+    catAll: "All (17)",
     catImage: "🖼️ Image (4)",
-    catPdf: "📄 PDF (3)",
+    catPdf: "📄 PDF (4)",
     catQr: "📱 QR (3)",
     catCalc: "🧮 Calculators (6)",
     proHeroTitle: "Upgrade to ToolBox Pro",
@@ -102,6 +102,8 @@ const translations = {
     tool_pdf_split_desc: "Extract specific page ranges or individual pages from a PDF.",
     tool_pdf_to_image: "PDF → Image",
     tool_pdf_to_image_desc: "Render and extract PDF pages as high-resolution PNG/JPG.",
+    tool_pdf_qr_editor: "PDF QR Editor",
+    tool_pdf_qr_editor_desc: "Select, detect, edit, replace, move, rotate or delete QR codes inside PDF.",
     tool_qr_scanner: "QR Scanner",
     tool_qr_scanner_desc: "Instant camera & image scan for URLs, WiFi and texts.",
     tool_qr_generator: "QR Generator",
@@ -144,20 +146,20 @@ const translations = {
     heroTitle: "কাজ করুন আরও সহজে ও স্মার্টলি",
     heroSubtitle: "প্রয়োজনীয় সব টুল এখন এক জায়গায়।",
     heroActionBtn: "ইমেজ কম্প্রেসার",
-    exploreAllTools: "১৬টি টুল দেখুন",
+    exploreAllTools: "১৭টি টুল দেখুন",
     searchPlaceholder: "যেকোনো টুল খুঁজুন (যেমন: ছবি, জিএসটি, কিউআর, পিডিএফ)...",
     quickActions: "কুইক অ্যাকশন",
     recentTools: "সম্প্রতি ব্যবহৃত",
     popularTools: "জনপ্রিয় টুলসমূহ",
-    viewAll: "সব দেখুন (১৬)",
+    viewAll: "সব দেখুন (১৭)",
     clear: "মুছুন",
     starFeature: "জনপ্রিয়",
     openTool: "টুল খুলুন →",
-    allToolsTitle: "সকল ১৬টি টুল",
+    allToolsTitle: "সকল ১৭টি টুল",
     allToolsSubtitle: "একটি ক্যাটাগরি বেছে নিন অথবা যেকোনো টুলে ট্যাপ করুন।",
-    catAll: "সব (১৬)",
+    catAll: "সব (১৭)",
     catImage: "🖼️ ছবি (৪)",
-    catPdf: "📄 পিডিএফ (৩)",
+    catPdf: "📄 পিডিএফ (৪)",
     catQr: "📱 কিউআর (৩)",
     catCalc: "🧮 ক্যালকুলেটর (৬)",
     proHeroTitle: "টুলবক্স প্রো-তে আপগ্রেড করুন",
@@ -215,6 +217,8 @@ const translations = {
     tool_pdf_split_desc: "পিডিএফ থেকে নির্দিষ্ট পেজ বা পেজ রেঞ্জ আলাদা করুন।",
     tool_pdf_to_image: "পিডিএফ থেকে ছবি",
     tool_pdf_to_image_desc: "পিডিএফ পেজগুলো হাই-রেজোলিউশন ছবিতে রূপান্তর করুন।",
+    tool_pdf_qr_editor: "পিডিএফ কিউআর এডিটর",
+    tool_pdf_qr_editor_desc: "পিডিএফের ভেতরের কিউআর কোড পরিবর্তন, রিপ্লেস, মুভ, রোটেট ও মুছে ফেলুন।",
     tool_qr_scanner: "কিউআর স্ক্যানার",
     tool_qr_scanner_desc: "ক্যামেরা বা ছবি থেকে সরাসরি কিউআর কোড স্ক্যান করুন।",
     tool_qr_generator: "কিউআর জেনারেটর",
@@ -433,7 +437,9 @@ function openToolWorkspace(toolId) {
   bodyEl.innerHTML = '';
 
   // Delegate rendering to corresponding module
-  if (['image-compressor', 'image-resize', 'image-crop', 'image-convert', 'pdf-merge', 'pdf-split', 'pdf-to-image'].includes(toolId)) {
+  if (toolId === 'pdf-qr-editor') {
+    if (window.renderPdfEditor) window.renderPdfEditor(bodyEl);
+  } else if (['image-compressor', 'image-resize', 'image-crop', 'image-convert', 'pdf-merge', 'pdf-split', 'pdf-to-image'].includes(toolId)) {
     if (window.renderMediaTool) window.renderMediaTool(toolId, bodyEl);
   } else {
     if (window.renderCalcOrUtilityTool) window.renderCalcOrUtilityTool(toolId, bodyEl);
@@ -564,7 +570,8 @@ const ALL_TOOLS = [
   { id: 'image-crop', category: 'image', emoji: '✂️', accent: 'rose-accent' },
   { id: 'image-convert', category: 'image', emoji: '🔄', accent: 'indigo-accent' },
 
-  // CATEGORY 2: PDF TOOLS (3 tools)
+  // CATEGORY 2: PDF TOOLS (4 tools)
+  { id: 'pdf-qr-editor', category: 'pdf', emoji: '📝', accent: 'blue-accent', featured: true },
   { id: 'pdf-merge', category: 'pdf', emoji: '📑', accent: 'purple-accent' },
   { id: 'pdf-split', category: 'pdf', emoji: '✂️', accent: 'orange-accent' },
   { id: 'pdf-to-image', category: 'pdf', emoji: '🖼️', accent: 'emerald-accent' },
