@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0f2fe" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#075985" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+
+  <!-- Subtle glow ring -->
+  <circle cx="256" cy="256" r="220" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="8" fill="none" />
+
+  <!-- Toolbox Body -->
+  <g filter="url(#shadow)">
+    <!-- Main Box -->
+    <rect x="106" y="196" width="300" height="190" rx="32" fill="url(#boxGrad)" />
+
+    <!-- Box Lid / Top -->
+    <path d="M126 196 L156 140 H356 L386 196 Z" fill="#f8fafc" />
+
+    <!-- Handle -->
+    <path d="M206 140 V96 C206 86 216 78 226 78 H286 C296 78 306 86 306 96 V140" fill="none" stroke="url(#goldGrad)" stroke-width="20" stroke-linecap="round" />
+
+    <!-- Latches -->
+    <rect x="176" y="186" width="32" height="36" rx="6" fill="url(#goldGrad)" />
+    <rect x="304" y="186" width="32" height="36" rx="6" fill="url(#goldGrad)" />
+
+    <!-- Center Badge (Wrench & Pen) -->
+    <circle cx="256" cy="290" r="54" fill="#0284c7" />
+
+    <!-- Tool Icon: Sparkle & Edit Pen -->
+    <path d="M236 304 L276 264 M266 254 L278 266 M230 310 L242 310 L236 304 Z" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" />
+    <path d="M246 252 L250 242 L254 252 L264 256 L254 260 L250 270 L246 260 L236 256 Z" fill="url(#goldGrad)" />
+  </g>
+</svg>

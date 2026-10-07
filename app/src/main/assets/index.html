@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>ToolBox Pro - All-in-One Utility</title>
+  
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="theme-color" content="#0284c7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ToolBox Pro">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
+  <link rel="apple-touch-icon" href="./assets/icon.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Core Stable CDN Libraries -->
+  <!-- PDF.js for rendering and text-layer detection -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- pdf-lib for creating, modifying, merging, splitting and baking PDF modifications -->
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.9/dist/pdf-lib.min.js"></script>
+  <!-- jsQR for camera & image QR code scanning -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <!-- QR Code generation -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body data-theme="light">
+  <!-- App Container -->
+  <div id="app" class="app-root">
+
+    <!-- TOP HEADER -->
+    <header class="app-header">
+      <div class="header-left">
+        <button id="btn-drawer-open" class="icon-btn" aria-label="Open Menu">
+          <svg viewBox="0 0 24 24" class="svg-icon"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="header-brand">
+          <div class="brand-logo-wrap">
+            <img src="./assets/icon.svg" alt="Logo" class="brand-logo-img">
+          </div>
+          <span class="brand-title app-name-text">ToolBox Pro</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <button id="btn-quick-theme" class="icon-btn" aria-label="Toggle Theme" title="Theme">
+          <svg viewBox="0 0 24 24" class="svg-icon theme-sun"><path d="M12 3v2m0 14v2M3 12h2m14 0h2m-3.05-6.95l-1.41 1.41m-9.08 9.08l-1.41 1.41m0-11.9l1.41 1.41m9.08 9.08l1.41 1.41M12 7a5 5 0 100 10 5 5 0 000-10z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button id="btn-header-pro" class="pro-crown-btn" aria-label="ToolBox Pro Member" title="Pro Features">
+          <svg viewBox="0 0 24 24" class="svg-crown"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" fill="currentColor"/></svg>
+          <span class="pro-crown-text" data-i18n="proBadge">PRO</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- SIDE NAVIGATION DRAWER (Mobile Slide-out) -->
+    <div id="drawer-backdrop" class="drawer-backdrop hidden"></div>
+    <aside id="app-drawer" class="app-drawer">
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <img src="./assets/icon.svg" alt="Logo" class="drawer-logo">
+          <div>
+            <h3 class="app-name-text">ToolBox Pro</h3>
+            <p class="drawer-subtitle" data-i18n="tagline">Smart Utilities for Everyone</p>
+          </div>
+        </div>
+        <button id="btn-drawer-close" class="icon-btn" aria-label="Close Menu">
+          <svg viewBox="0 0 24 24" class="svg-icon"><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Pro Banner in Drawer -->
+        <div class="drawer-pro-card" id="drawer-pro-card">
+          <div class="drawer-pro-info">
+            <span class="pro-tag" data-i18n="proCardTag">PREMIUM</span>
+            <h4 data-i18n="proCardTitle">Unlock ToolBox Pro</h4>
+            <p data-i18n="proCardDesc">Ad-free, unlimited PDF processing, priority features.</p>
+          </div>
+          <button class="btn btn-gold btn-sm" id="btn-drawer-upgrade" data-i18n="upgradeNow">Upgrade</button>
+        </div>
+
+        <!-- Language Switch -->
+        <div class="drawer-setting-group">
+          <label class="setting-label" data-i18n="language">Language / ভাষা</label>
+          <div class="segmented-control">
+            <button class="segment-btn active" data-lang="en">English</button>
+            <button class="segment-btn" data-lang="bn">বাংলা</button>
+          </div>
+        </div>
+
+        <!-- Theme Switch -->
+        <div class="drawer-setting-group">
+          <label class="setting-label" data-i18n="theme">Theme / থিম</label>
+          <div class="segmented-control">
+            <button class="segment-theme-btn active" data-theme-val="light" data-i18n="themeLight">Light Blue</button>
+            <button class="segment-theme-btn" data-theme-val="dark" data-i18n="themeDark">Dark</button>
+            <button class="segment-theme-btn" data-theme-val="system" data-i18n="themeSystem">System</button>
+          </div>
+        </div>
+
+        <nav class="drawer-nav">
+          <button class="drawer-link" data-tab="home">
+            <svg viewBox="0 0 24 24" class="svg-icon"><path d="M3 10.25L12 3l9 7.25V20a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9.75z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span data-i18n="navHome">Home</span>
+          </button>
+          <button class="drawer-link" data-tab="tools">
+            <svg viewBox="0 0 24 24" class="svg-icon"><path d="M4 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span data-i18n="navTools">All Tools</span>
+          </button>
+          <button class="drawer-link" data-tab="premium">
+            <svg viewBox="0 0 24 24" class="svg-icon"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span data-i18n="navPremium">Premium Pro</span>
+          </button>
+          <button class="drawer-link" data-tab="settings">
+            <svg viewBox="0 0 24 24" class="svg-icon"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span data-i18n="navSettings">Settings</span>
+          </button>
+        </nav>
+
+        <div class="drawer-footer">
+          <p class="privacy-note"><svg viewBox="0 0 24 24" class="svg-inline-lock"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" fill="none" stroke="currentColor" stroke-width="2"/></svg> <span data-i18n="privacyGuaranteed">100% On-device privacy</span></p>
+          <span class="version-label">v1.2.0 PWA</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN SCROLLABLE CONTENT AREA -->
+    <main class="app-content">
+
+      <!-- ================= 1. HOME SCREEN ================= -->
+      <section id="view-home" class="view-screen active">
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-content">
+            <span class="hero-badge" data-i18n="heroBadge">⚡ Productive & Fast</span>
+            <h1 class="hero-title" data-i18n="heroTitle">Work Smarter, Not Harder</h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">All the useful tools you need in one app.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="btn-hero-pdf" data-open-tool="pdf-text-editor">
+                <svg viewBox="0 0 24 24" class="svg-icon-btn"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                <span data-i18n="openPdfEditor">PDF Text Editor</span>
+              </button>
+              <button class="btn btn-secondary" id="btn-hero-all-tools" data-tab="tools">
+                <span data-i18n="exploreAllTools">Explore 24+ Tools</span>
+              </button>
+            </div>
+          </div>
+          <div class="hero-illustration">
+            <div class="floating-tool-icon icon-1">📄</div>
+            <div class="floating-tool-icon icon-2">🖼️</div>
+            <div class="floating-tool-icon icon-3">📱</div>
+            <div class="floating-tool-icon icon-4">⚡</div>
+          </div>
+        </div>
+
+        <!-- Search / Filter Bar -->
+        <div class="search-box-wrap">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" class="search-icon"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <input type="text" id="home-search-input" class="search-input" placeholder="Search any tool (e.g. PDF, Image, GST, QR)..." data-i18n-ph="searchPlaceholder">
+            <button id="home-search-clear" class="search-clear hidden">&times;</button>
+          </div>
+        </div>
+
+        <!-- Search Results (Dynamic) -->
+        <div id="home-search-results" class="tool-grid hidden"></div>
+
+        <!-- QUICK ACTIONS ROW -->
+        <div class="section-block" id="home-quick-actions-section">
+          <div class="section-header">
+            <h3 class="section-title" data-i18n="quickActions">Quick Actions</h3>
+          </div>
+          <div class="quick-actions-row">
+            <button class="quick-action-pill" data-open-tool="pdf-text-editor">
+              <span class="qa-icon">✏️</span>
+              <span class="qa-text" data-i18n="tool_pdf_text_editor">PDF Text Editor</span>
+            </button>
+            <button class="quick-action-pill" data-open-tool="image-compressor">
+              <span class="qa-icon">🗜️</span>
+              <span class="qa-text" data-i18n="tool_image_compressor">Compress Image</span>
+            </button>
+            <button class="quick-action-pill" data-open-tool="qr-scanner">
+              <span class="qa-icon">📷</span>
+              <span class="qa-text" data-i18n="tool_qr_scanner">Scan QR</span>
+            </button>
+            <button class="quick-action-pill" data-open-tool="gst-calculator">
+              <span class="qa-icon">🏷️</span>
+              <span class="qa-text" data-i18n="tool_gst_calculator">GST Calc</span>
+            </button>
+            <button class="quick-action-pill" data-open-tool="expense-tracker">
+              <span class="qa-icon">💰</span>
+              <span class="qa-text" data-i18n="tool_expense_tracker">Expenses</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RECENT TOOLS (Dynamically populated from LocalStorage) -->
+        <div class="section-block" id="home-recent-section">
+          <div class="section-header">
+            <h3 class="section-title" data-i18n="recentTools">Recently Used</h3>
+            <button class="section-link-btn" id="btn-clear-recents" data-i18n="clear">Clear</button>
+          </div>
+          <div id="home-recent-list" class="recent-tools-row">
+            <!-- Injected by script -->
+          </div>
+        </div>
+
+        <!-- POPULAR TOOLS -->
+        <div class="section-block">
+          <div class="section-header">
+            <h3 class="section-title" data-i18n="popularTools">Popular Tools</h3>
+            <button class="section-link-btn" data-tab="tools" data-i18n="viewAll">View All (24)</button>
+          </div>
+          <div class="tool-grid" id="home-popular-grid">
+            <!-- Highlighted Tool: PDF TEXT EDITOR -->
+            <div class="tool-card featured-card" data-open-tool="pdf-text-editor">
+              <div class="featured-ribbon" data-i18n="starFeature">CORE FEATURE</div>
+              <div class="tool-card-top">
+                <div class="tool-icon-box blue-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M9 13h6 M9 17h4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catPdf">PDF Tools</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_pdf_text_editor">PDF Text Editor</h4>
+              <p class="tool-desc" data-i18n="tool_pdf_text_editor_desc">Edit text and numbers inside PDF files with precision.</p>
+              <div class="tool-card-footer">
+                <span class="tool-action-link" data-i18n="openTool">Open Editor &rarr;</span>
+              </div>
+            </div>
+
+            <!-- Image Compressor -->
+            <div class="tool-card" data-open-tool="image-compressor">
+              <div class="tool-card-top">
+                <div class="tool-icon-box green-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catImage">Image</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_image_compressor">Image Compressor</h4>
+              <p class="tool-desc" data-i18n="tool_image_compressor_desc">Reduce image file size quickly while preserving clarity.</p>
+            </div>
+
+            <!-- QR Scanner -->
+            <div class="tool-card" data-open-tool="qr-scanner">
+              <div class="tool-card-top">
+                <div class="tool-icon-box purple-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2 M7 7h3v3H7z M14 7h3v3h-3z M7 14h3v3H7z M14 14h3v3h-3z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catQr">QR Tools</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_qr_scanner">QR Scanner</h4>
+              <p class="tool-desc" data-i18n="tool_qr_scanner_desc">Instant camera & image scan for URLs, WiFi and texts.</p>
+            </div>
+
+            <!-- GST Calculator -->
+            <div class="tool-card" data-open-tool="gst-calculator">
+              <div class="tool-card-top">
+                <div class="tool-icon-box orange-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catCalc">Calculators</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_gst_calculator">GST Calculator</h4>
+              <p class="tool-desc" data-i18n="tool_gst_calculator_desc">Calculate GST addition & removal with exact tax split.</p>
+            </div>
+
+            <!-- Image to PDF -->
+            <div class="tool-card" data-open-tool="image-to-pdf">
+              <div class="tool-card-top">
+                <div class="tool-icon-box cyan-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catPdf">PDF Tools</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_image_to_pdf">Image → PDF</h4>
+              <p class="tool-desc" data-i18n="tool_image_to_pdf_desc">Convert multiple photos into a single clean PDF document.</p>
+            </div>
+
+            <!-- Expense Tracker -->
+            <div class="tool-card" data-open-tool="expense-tracker">
+              <div class="tool-card-top">
+                <div class="tool-icon-box emerald-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 12v-2m0 0c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catMoney">Money</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_expense_tracker">Expense Tracker</h4>
+              <p class="tool-desc" data-i18n="tool_expense_tracker_desc">Track daily spending with categories & local summaries.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ad/Sponsor Banner Placeholder -->
+        <div class="ad-placeholder-container" id="ad-banner-home">
+          <div class="ad-banner-box">
+            <span class="ad-tag">SPONSORED</span>
+            <div class="ad-banner-content">
+              <strong>ToolBox Pro Ad Space</strong>
+              <p>AdService hook ready. Upgrade to Pro for zero ads.</p>
+            </div>
+            <button class="btn btn-sm btn-ghost" id="btn-ad-remove" data-tab="premium">Remove Ads</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. ALL TOOLS SCREEN ================= -->
+      <section id="view-tools" class="view-screen">
+        <div class="tools-page-header">
+          <h2 class="page-title" data-i18n="allToolsTitle">All 24 Tools</h2>
+          <p class="page-subtitle" data-i18n="allToolsSubtitle">Select a category or tap any utility to begin.</p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="category-tabs-scroll">
+          <button class="cat-pill active" data-cat="all" data-i18n="catAll">All (24)</button>
+          <button class="cat-pill" data-cat="image" data-i18n="catImage">🖼️ Image (4)</button>
+          <button class="cat-pill" data-cat="pdf" data-i18n="catPdf">📄 PDF (5)</button>
+          <button class="cat-pill" data-cat="qr" data-i18n="catQr">📱 QR (3)</button>
+          <button class="cat-pill" data-cat="calculator" data-i18n="catCalc">🧮 Calculators (7)</button>
+          <button class="cat-pill" data-cat="utility" data-i18n="catUtility">🛠️ Utility (4)</button>
+          <button class="cat-pill" data-cat="money" data-i18n="catMoney">💵 Money (1)</button>
+        </div>
+
+        <!-- Full Tools Grid -->
+        <div class="tool-grid" id="full-tools-grid">
+          <!-- Populated by script with all 24 tools -->
+        </div>
+      </section>
+
+      <!-- ================= 3. PREMIUM PRO SCREEN ================= -->
+      <section id="view-premium" class="view-screen">
+        <div class="premium-hero">
+          <div class="premium-crown-large">👑</div>
+          <span class="pro-tag" data-i18n="proBadge">TOOLBOX PRO</span>
+          <h2 class="premium-title" data-i18n="proHeroTitle">Upgrade to ToolBox Pro</h2>
+          <p class="premium-desc" data-i18n="proHeroDesc">Supercharge your productivity with professional capabilities.</p>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-badge" data-i18n="lifetimeAccess">LIFETIME ACCESS</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-val">0.00</span>
+            <span class="price-period" data-i18n="demoFree">Special Build</span>
+          </div>
+          <p class="pricing-note" data-i18n="proCardDesc">Enable Pro mode now to test and preview all Pro features.</p>
+          
+          <ul class="pro-features-list">
+            <li>
+              <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
+              <span data-i18n="proFeat1">Unlimited PDF Text Editing & High-Res Export</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
+              <span data-i18n="proFeat2">100% Ad-Free Clean Commercial Experience</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
+              <span data-i18n="proFeat3">Batch Image Processing & High Quality Resizing</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
+              <span data-i18n="proFeat4">Unlimited Expense History & JSON Data Backup</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
+              <span data-i18n="proFeat5">Priority Client-Side Processing</span>
+            </li>
+          </ul>
+
+          <button class="btn btn-gold btn-block" id="btn-toggle-pro-status">
+            <span id="btn-pro-status-text" data-i18n="activatePro">Activate Pro Mode</span>
+          </button>
+        </div>
+
+        <div class="monetization-info-card">
+          <h4 data-i18n="monetizationArchitecture">Monetization Architecture</h4>
+          <p data-i18n="monetizationDesc">Built with an extensible AdService abstraction ready to integrate Google AdMob, Google AdSense, or custom sponsorship slots.</p>
+        </div>
+      </section>
+
+      <!-- ================= 4. SETTINGS SCREEN ================= -->
+      <section id="view-settings" class="view-screen">
+        <div class="settings-page-header">
+          <h2 class="page-title" data-i18n="settingsTitle">Settings</h2>
+          <p class="page-subtitle" data-i18n="settingsSubtitle">Personalize theme, language, and manage local data.</p>
+        </div>
+
+        <!-- Group: Appearance -->
+        <div class="settings-group">
+          <h3 class="settings-group-title" data-i18n="setAppearance">Appearance</h3>
+          
+          <div class="setting-item">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="language">Language / ভাষা</span>
+              <span class="setting-item-desc" data-i18n="languageDesc">Choose application interface language</span>
+            </div>
+            <select id="select-settings-lang" class="settings-select">
+              <option value="en">English</option>
+              <option value="bn">বাংলা (Bengali)</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="theme">Theme</span>
+              <span class="setting-item-desc" data-i18n="themeDesc">Select light blue, dark, or system mode</span>
+            </div>
+            <select id="select-settings-theme" class="settings-select">
+              <option value="light" data-i18n="themeLight">Light Blue</option>
+              <option value="dark" data-i18n="themeDark">Dark</option>
+              <option value="system" data-i18n="themeSystem">System</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Group: Data Management -->
+        <div class="settings-group">
+          <h3 class="settings-group-title" data-i18n="setData">Data & Storage</h3>
+
+          <div class="setting-item clickable" id="btn-backup-data">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="backupData">Backup Data</span>
+              <span class="setting-item-desc" data-i18n="backupDataDesc">Export expenses, QR history, and preferences to JSON</span>
+            </div>
+            <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+
+          <div class="setting-item clickable" id="btn-restore-data-trigger">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="restoreData">Restore Data</span>
+              <span class="setting-item-desc" data-i18n="restoreDataDesc">Import your saved backup JSON file</span>
+            </div>
+            <input type="file" id="input-restore-file" accept=".json" class="hidden">
+            <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+
+          <div class="setting-item clickable text-danger" id="btn-clear-all-data">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="clearData">Clear History & Data</span>
+              <span class="setting-item-desc" data-i18n="clearDataDesc">Remove all saved local history and cached files</span>
+            </div>
+            <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+
+        <!-- Group: Privacy & Terms -->
+        <div class="settings-group">
+          <h3 class="settings-group-title" data-i18n="setPrivacy">Privacy & Trust</h3>
+
+          <div class="setting-item clickable" id="btn-open-privacy">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="privacyPolicy">Privacy Policy</span>
+              <span class="setting-item-desc" data-i18n="privacyPolicyDesc">All documents and images are processed on your device</span>
+            </div>
+            <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+
+          <div class="setting-item clickable" id="btn-open-terms">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="termsOfService">Terms of Service</span>
+              <span class="setting-item-desc" data-i18n="termsOfServiceDesc">Read guidelines and open-source license info</span>
+            </div>
+            <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+
+        <!-- Group: About -->
+        <div class="settings-group">
+          <h3 class="settings-group-title" data-i18n="setAbout">About</h3>
+
+          <div class="setting-item">
+            <div class="setting-item-info">
+              <span class="setting-item-name app-name-text">ToolBox Pro</span>
+              <span class="setting-item-desc">Version 1.2.0 • Offline-First PWA</span>
+            </div>
+            <span class="badge badge-success">Up to date</span>
+          </div>
+
+          <div class="setting-item clickable" id="btn-share-app">
+            <div class="setting-item-info">
+              <span class="setting-item-name" data-i18n="shareApp">Share ToolBox Pro</span>
+              <span class="setting-item-desc" data-i18n="shareAppDesc">Share this progressive web app with friends & colleagues</span>
+            </div>
+            <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. DEDICATED TOOL WORKSPACE (Overlay/Modal Container) ================= -->
+      <section id="view-tool-workspace" class="tool-workspace hidden">
+        <!-- Top Workspace Bar -->
+        <div class="workspace-header">
+          <button id="btn-tool-back" class="icon-btn" aria-label="Back to tools">
+            <svg viewBox="0 0 24 24" class="svg-icon"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="workspace-title-box">
+            <h3 id="workspace-tool-title" class="workspace-tool-name">Tool Name</h3>
+            <span id="workspace-tool-category" class="workspace-tool-cat">Category</span>
+          </div>
+          <div class="workspace-actions" id="workspace-extra-actions">
+            <!-- Dynamic tool actions if any -->
+          </div>
+        </div>
+
+        <!-- Workspace Tool Body (Hosts the active tool UI) -->
+        <div class="workspace-body" id="workspace-active-body">
+          <!-- The selected tool HTML is injected or toggled here -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-tab="home">
+        <svg viewBox="0 0 24 24" class="nav-svg"><path d="M3 10.25L12 3l9 7.25V20a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9.75z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="nav-label" data-i18n="navHome">Home</span>
+      </button>
+      <button class="nav-item" data-tab="tools">
+        <svg viewBox="0 0 24 24" class="nav-svg"><path d="M4 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="nav-label" data-i18n="navTools">Tools</span>
+      </button>
+      <button class="nav-item" data-tab="premium">
+        <svg viewBox="0 0 24 24" class="nav-svg"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="nav-label" data-i18n="navPremium">Premium</span>
+      </button>
+      <button class="nav-item" data-tab="settings">
+        <svg viewBox="0 0 24 24" class="nav-svg"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="nav-label" data-i18n="navSettings">Settings</span>
+      </button>
+    </nav>
+
+    <!-- ================= FLOATING DIALOGS & MODALS ================= -->
+
+    <!-- PDF Text Edit Inspector Modal -->
+    <div id="modal-pdf-text-edit" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h4 data-i18n="editTextTitle">Edit PDF Text</h4>
+          <button class="modal-close" id="btn-close-pdf-text-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" data-i18n="originalText">Original PDF Text</label>
+            <div id="pdf-edit-original-text" class="text-preview-box"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="replacementText">New Replacement Text</label>
+            <textarea id="pdf-edit-new-text" class="form-textarea" rows="2" placeholder="Type new text..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label" data-i18n="fontSize">Font Size</label>
+              <div class="stepper-input">
+                <button type="button" id="btn-fs-minus">-</button>
+                <input type="number" id="pdf-edit-font-size" value="12" min="6" max="72">
+                <button type="button" id="btn-fs-plus">+</button>
+              </div>
+            </div>
+            <div class="form-col">
+              <label class="form-label" data-i18n="textColor">Text Color</label>
+              <input type="color" id="pdf-edit-color" value="#000000" class="form-color-picker">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label" data-i18n="coverColor">Cover Color</label>
+              <input type="color" id="pdf-edit-cover-color" value="#ffffff" class="form-color-picker">
+            </div>
+            <div class="form-col">
+              <label class="form-label" data-i18n="styleOptions">Style</label>
+              <div class="btn-group-toggle">
+                <button type="button" class="btn-toggle" id="btn-pdf-bold"><b>B</b></button>
+                <button type="button" class="btn-toggle" id="btn-pdf-italic"><i>I</i></button>
+              </div>
+            </div>
+          </div>
+          <p class="field-hint" data-i18n="editPreserveHint">The original text will be covered cleanly and the new text placed at the exact same coordinates.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btn-cancel-pdf-text" data-i18n="cancel">Cancel</button>
+          <button class="btn btn-primary" id="btn-apply-pdf-text" data-i18n="applyChange">Apply Change</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF Signature Pad Modal -->
+    <div id="modal-signature-pad" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h4 data-i18n="signatureTitle">Draw Your Signature</h4>
+          <button class="modal-close" id="btn-close-sig-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="field-hint" data-i18n="sigHint">Draw with your finger or stylus inside the box below.</p>
+          <div class="sig-canvas-wrapper">
+            <canvas id="sig-canvas" width="340" height="180"></canvas>
+          </div>
+          <div class="sig-color-options">
+            <button class="color-dot active" data-color="#000000" style="background:#000000;"></button>
+            <button class="color-dot" data-color="#0284c7" style="background:#0284c7;"></button>
+            <button class="color-dot" data-color="#1e3a8a" style="background:#1e3a8a;"></button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btn-clear-sig" data-i18n="clear">Clear</button>
+          <button class="btn btn-primary" id="btn-apply-sig" data-i18n="insertSignature">Insert Signature</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF Page Manager Modal -->
+    <div id="modal-page-manager" class="modal-backdrop hidden">
+      <div class="modal-card modal-lg">
+        <div class="modal-header">
+          <h4 data-i18n="pageManagerTitle">Page Manager</h4>
+          <button class="modal-close" id="btn-close-pm-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="pm-thumbnails-grid" class="thumbnails-grid"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btn-pm-add-blank" data-i18n="addBlankPage">+ Add Blank</button>
+          <button class="btn btn-primary" id="btn-pm-done" data-i18n="done">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="modal-privacy" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h4 data-i18n="privacyPolicy">Privacy Policy</h4>
+          <button class="modal-close" id="btn-close-privacy">&times;</button>
+        </div>
+        <div class="modal-body modal-scroll-body">
+          <h5 data-i18n="privacy1Title">1. 100% Local Processing</h5>
+          <p data-i18n="privacy1Desc">ToolBox Pro prioritizes your privacy. Your PDF documents, images, expenses, and QR codes are processed locally in your browser's memory. No uploaded files are stored on external application servers.</p>
+          <h5 data-i18n="privacy2Title">2. No Personal Data Harvesting</h5>
+          <p data-i18n="privacy2Desc">We do not collect personal names, files, passwords, or transaction data. Everything stays on your phone or computer unless you explicitly export or share it.</p>
+          <h5 data-i18n="privacy3Title">3. Camera Access</h5>
+          <p data-i18n="privacy3Desc">Camera permissions are requested solely for client-side QR code scanning and are never streamed or recorded.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="btn-dismiss-privacy" data-i18n="close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+  </div>
+
+  <!-- Modular Application Scripts -->
+  <script src="./js/app-core.js"></script>
+  <script src="./js/pdf-editor.js"></script>
+  <script src="./js/tools-media.js"></script>
+  <script src="./js/tools-calculators.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

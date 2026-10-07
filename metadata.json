@@ -1,0 +1,6 @@
+{
+  "name": "ToolBox Pro",
+  "description": "All-in-one utility app with PDF Text Editor, Image Tools, QR tools, Calculators and Expense Tracker",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
