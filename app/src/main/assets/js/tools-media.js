@@ -19,9 +19,6 @@
       case 'image-convert':
         renderImageConvert(container);
         break;
-      case 'image-to-pdf':
-        renderImageToPdf(container);
-        break;
       case 'pdf-merge':
         renderPdfMerge(container);
         break;
@@ -380,120 +377,6 @@
         downloadBlob(blob, `converted-image.${ext}`);
         showToast('Image converted & downloaded!', 'success');
       }, format, 0.9);
-    };
-  }
-
-  // 6. IMAGE TO PDF
-  function renderImageToPdf(container) {
-    container.innerHTML = `
-      <div class="tool-pane">
-        <div class="upload-dropzone">
-          <span class="upload-icon">📄</span>
-          <span class="upload-text">Select Images to Build PDF</span>
-          <span class="upload-subtext">You can pick multiple photos</span>
-          <input type="file" id="img2pdf-file-input" accept="image/*" multiple class="hidden">
-          <button class="btn btn-primary" type="button" id="btn-pick-img2pdf">Add Images</button>
-        </div>
-
-        <div id="img2pdf-workspace" class="form-card hidden">
-          <div class="form-row">
-            <div class="form-col">
-              <label class="form-label">Orientation</label>
-              <select id="img2pdf-orient" class="form-select">
-                <option value="portrait">Portrait</option>
-                <option value="landscape">Landscape</option>
-              </select>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Page Size</label>
-              <select id="img2pdf-pagesize" class="form-select">
-                <option value="a4">A4</option>
-                <option value="fit">Fit to Image</option>
-              </select>
-            </div>
-          </div>
-
-          <label class="form-label">Selected Images (<span id="img2pdf-count">0</span>)</label>
-          <div id="img2pdf-list" style="display:flex; flex-direction:column; gap:6px; max-height:200px; overflow-y:auto;"></div>
-
-          <button class="btn btn-primary btn-block" id="btn-generate-pdf">
-            Generate & Download PDF
-          </button>
-        </div>
-      </div>
-    `;
-
-    let selectedFiles = [];
-    const fileInput = document.getElementById('img2pdf-file-input');
-    document.getElementById('btn-pick-img2pdf').onclick = () => fileInput.click();
-
-    fileInput.onchange = (e) => {
-      const files = Array.from(e.target.files);
-      if (files.length === 0) return;
-      selectedFiles = [...selectedFiles, ...files];
-      updateImgList();
-    };
-
-    function updateImgList() {
-      const list = document.getElementById('img2pdf-list');
-      const countEl = document.getElementById('img2pdf-count');
-      list.innerHTML = '';
-      countEl.textContent = selectedFiles.length;
-
-      if (selectedFiles.length > 0) {
-        document.getElementById('img2pdf-workspace').classList.remove('hidden');
-      }
-
-      selectedFiles.forEach((f, idx) => {
-        const item = document.createElement('div');
-        item.style.cssText = 'display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:6px 10px; border-radius:6px; font-size:0.85rem;';
-        item.innerHTML = `
-          <span>${idx + 1}. ${f.name}</span>
-          <button class="icon-btn btn-sm" style="color:#ef4444;" onclick="window.removeImg2PdfItem(${idx})">🗑️</button>
-        `;
-        list.appendChild(item);
-      });
-    }
-
-    window.removeImg2PdfItem = (idx) => {
-      selectedFiles.splice(idx, 1);
-      updateImgList();
-    };
-
-    document.getElementById('btn-generate-pdf').onclick = async () => {
-      if (selectedFiles.length === 0) return;
-      showToast('Creating PDF document...', 'info');
-
-      try {
-        const { PDFDocument } = window.PDFLib;
-        const pdfDoc = await PDFDocument.create();
-
-        for (const file of selectedFiles) {
-          const arrayBuf = await file.arrayBuffer();
-          let imgEmbed;
-          if (file.type === 'image/png') {
-            imgEmbed = await pdfDoc.embedPng(arrayBuf);
-          } else {
-            imgEmbed = await pdfDoc.embedJpg(arrayBuf);
-          }
-
-          const page = pdfDoc.addPage([595.28, 841.89]); // A4
-          const { width, height } = imgEmbed.scaleToFit(515.28, 761.89);
-          page.drawImage(imgEmbed, {
-            x: (595.28 - width) / 2,
-            y: (841.89 - height) / 2,
-            width,
-            height
-          });
-        }
-
-        const pdfBytes = await pdfDoc.save();
-        downloadBlob(new Blob([pdfBytes], { type: 'application/pdf' }), 'images-document.pdf');
-        showToast('PDF created successfully!', 'success');
-      } catch (err) {
-        console.error(err);
-        showToast('Failed to create PDF', 'error');
-      }
     };
   }
 

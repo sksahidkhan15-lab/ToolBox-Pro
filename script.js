@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navigator.share) {
         navigator.share({
           title: APP_NAME,
-          text: 'Check out ToolBox Pro - Complete Mobile Utility App with PDF Text Editor!',
+          text: 'Check out ToolBox Pro - All-in-One Utility Suite for Images, PDFs, QR & Calculators!',
           url: window.location.href
         }).catch(() => {});
       } else {

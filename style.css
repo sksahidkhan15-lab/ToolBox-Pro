@@ -604,7 +604,7 @@ body[data-theme="dark"] .pro-crown-btn {
   transform: scale(0.98);
 }
 
-/* FEATURED CORE TOOL (PDF TEXT EDITOR) */
+/* FEATURED TOOL */
 .tool-card.featured-card {
   grid-column: span 2;
   background: linear-gradient(135deg, var(--bg-card) 0%, var(--primary-light) 100%);
@@ -1429,258 +1429,6 @@ body[data-theme="dark"] .upload-text {
   margin-top: 4px;
 }
 
-/* ================= PDF TEXT EDITOR (FLAGSHIP FEATURE) ================= */
-.pdf-editor-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-.pdf-editor-top-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  background: var(--bg-card);
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  margin-bottom: 8px;
-  border: 1px solid var(--border-subtle);
-  flex-wrap: wrap;
-}
-
-.pdf-doc-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.pdf-name-badge {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text-main);
-  max-width: 180px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.pdf-mode-pill {
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-}
-
-.mode-text { background: #dcfce7; color: #15803d; }
-.mode-ocr { background: #ffedd5; color: #ea580c; }
-
-body[data-theme="dark"] .mode-text { background: #052e16; color: #4ade80; }
-body[data-theme="dark"] .mode-ocr { background: #431407; color: #fb923c; }
-
-.pdf-editor-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  overflow-x: auto;
-  background: var(--bg-card);
-  padding: 8px 10px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  margin-bottom: 10px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.pdf-editor-toolbar::-webkit-scrollbar {
-  display: none;
-}
-
-.tool-bar-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 6px 10px;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 0.72rem;
-  font-weight: 600;
-  flex-shrink: 0;
-  transition: all 0.18s;
-  min-width: 58px;
-}
-
-.tool-bar-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.tool-bar-btn:hover {
-  background: var(--bg-input);
-  color: var(--text-main);
-}
-
-.tool-bar-btn.active {
-  background: var(--primary-light);
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.toolbar-divider {
-  width: 1px;
-  height: 24px;
-  background: var(--border-subtle);
-  margin: 0 4px;
-  flex-shrink: 0;
-}
-
-/* Document Stage / Canvas */
-.pdf-stage-wrapper {
-  flex: 1;
-  background: #cbd5e1;
-  border-radius: var(--radius-md);
-  overflow: auto;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px 10px;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
-  min-height: 400px;
-}
-
-body[data-theme="dark"] .pdf-stage-wrapper {
-  background: #0f172a;
-}
-
-.pdf-page-container {
-  position: relative;
-  background: #ffffff;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-  margin: 0 auto;
-  border-radius: 2px;
-}
-
-#pdf-render-canvas {
-  display: block;
-}
-
-/* Annotation / Drawing Canvas on top */
-#pdf-annot-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-  z-index: 20;
-}
-
-/* Interactive Text Detection Layer */
-.pdf-text-interactive-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-.detected-text-box {
-  position: absolute;
-  border: 1px dashed rgba(2, 132, 199, 0.4);
-  background: rgba(2, 132, 199, 0.04);
-  cursor: pointer;
-  border-radius: 2px;
-  transition: all 0.15s;
-}
-
-.detected-text-box:hover {
-  border-color: #0284c7;
-  background: rgba(2, 132, 199, 0.18);
-  box-shadow: 0 0 0 2px var(--primary-glow);
-}
-
-/* Applied Text Edit Cover & Replacement */
-.applied-text-patch {
-  position: absolute;
-  z-index: 15;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.applied-text-cover {
-  position: absolute;
-  inset: 0;
-  background: #ffffff;
-}
-
-.applied-text-content {
-  position: relative;
-  z-index: 2;
-  white-space: pre;
-  color: #000000;
-  font-family: Helvetica, Arial, sans-serif;
-  line-height: 1;
-}
-
-/* Added Custom Text Box */
-.custom-added-text {
-  position: absolute;
-  z-index: 16;
-  border: 1px dashed var(--primary);
-  background: rgba(255, 255, 255, 0.85);
-  padding: 2px 4px;
-  cursor: move;
-  border-radius: 4px;
-}
-
-/* Bottom Page Navigation Controls */
-.pdf-bottom-controls {
-  margin-top: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.page-stepper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.page-indicator {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.zoom-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.zoom-val {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  min-width: 44px;
-  text-align: center;
-}
-
 /* ================= GENERAL FORM & INPUT CONTROLS ================= */
 .form-card {
   background: var(--bg-card);
@@ -1916,77 +1664,8 @@ body[data-theme="dark"] .calc-btn.action-btn {
   color: var(--primary);
 }
 
-/* BMI Meter Gauge */
-.bmi-gauge-wrap {
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bmi-bar {
-  height: 12px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(to right, #38bdf8 0%, #22c55e 30%, #eab308 65%, #ef4444 100%);
-  position: relative;
-}
-
-.bmi-indicator-pin {
-  position: absolute;
-  top: -4px;
-  width: 6px;
-  height: 20px;
-  background: #000000;
-  border-radius: 3px;
-  border: 1px solid #ffffff;
-  transform: translateX(-50%);
-  transition: left 0.3s ease;
-}
-
-/* QR Camera Scanner View */
-.qr-scanner-box {
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-  background: #000000;
-  box-shadow: var(--shadow-lg);
-  aspect-ratio: 1;
-}
-
-#qr-video-stream {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.qr-scan-target-frame {
-  position: absolute;
-  inset: 15%;
-  border: 2.5px solid #38bdf8;
-  border-radius: 16px;
-  pointer-events: none;
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45);
-}
-
-.qr-laser-line {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-  animation: qrLaser 2.2s infinite alternate ease-in-out;
-}
-
-@keyframes qrLaser {
-  0% { top: 0; }
-  100% { top: 100%; }
-}
-
-/* Expense List */
-.expense-item {
+/* History List (QR History) */
+.history-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1997,31 +1676,25 @@ body[data-theme="dark"] .calc-btn.action-btn {
   margin-bottom: 8px;
 }
 
-.expense-item-left {
+.history-item-left {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.expense-cat-icon {
+.history-cat-icon {
   font-size: 1.3rem;
 }
 
-.expense-title {
+.history-title {
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-main);
 }
 
-.expense-date {
+.history-date {
   font-size: 0.72rem;
   color: var(--text-muted);
-}
-
-.expense-amount {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #dc2626;
 }
 
 /* ================= MODALS & DIALOGS ================= */
@@ -2125,76 +1798,6 @@ body[data-theme="dark"] .calc-btn.action-btn {
   max-height: 60px;
   overflow-y: auto;
   border: 1px solid var(--border-subtle);
-}
-
-/* Signature Pad */
-.sig-canvas-wrapper {
-  background: #ffffff;
-  border: 2px dashed var(--border-subtle);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-#sig-canvas {
-  touch-action: none;
-  cursor: crosshair;
-}
-
-.sig-color-options {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.color-dot {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-full);
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: transform 0.15s;
-}
-
-.color-dot.active {
-  border-color: var(--border-focus);
-  transform: scale(1.15);
-}
-
-/* Page Manager Thumbnail Grid */
-.thumbnails-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.pm-thumb-card {
-  background: var(--bg-input);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  position: relative;
-}
-
-.pm-thumb-canvas {
-  width: 100%;
-  height: auto;
-  box-shadow: var(--shadow-sm);
-  background: #ffffff;
-}
-
-.pm-thumb-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 0.75rem;
-  font-weight: 700;
 }
 
 /* ================= TOAST NOTIFICATIONS ================= */

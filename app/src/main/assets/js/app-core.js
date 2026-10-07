@@ -29,35 +29,33 @@ const translations = {
     heroBadge: "⚡ Productive & Fast",
     heroTitle: "Work Smarter, Not Harder",
     heroSubtitle: "All the useful tools you need in one app.",
-    openPdfEditor: "PDF Text Editor",
-    exploreAllTools: "Explore 24+ Tools",
-    searchPlaceholder: "Search any tool (e.g. PDF, Image, GST, QR)...",
+    heroActionBtn: "Compress Image",
+    exploreAllTools: "Explore 16 Tools",
+    searchPlaceholder: "Search any tool (e.g. Image, GST, QR, PDF)...",
     quickActions: "Quick Actions",
     recentTools: "Recently Used",
     popularTools: "Popular Tools",
-    viewAll: "View All (24)",
+    viewAll: "View All (16)",
     clear: "Clear",
-    starFeature: "CORE FEATURE",
+    starFeature: "POPULAR",
     openTool: "Open Tool →",
-    allToolsTitle: "All 24 Tools",
+    allToolsTitle: "All 16 Tools",
     allToolsSubtitle: "Select a category or tap any utility to begin.",
-    catAll: "All (24)",
+    catAll: "All (16)",
     catImage: "🖼️ Image (4)",
-    catPdf: "📄 PDF (5)",
+    catPdf: "📄 PDF (3)",
     catQr: "📱 QR (3)",
-    catCalc: "🧮 Calculators (7)",
-    catUtility: "🛠️ Utility (4)",
-    catMoney: "💵 Money (1)",
+    catCalc: "🧮 Calculators (6)",
     proHeroTitle: "Upgrade to ToolBox Pro",
     proHeroDesc: "Supercharge your productivity with professional capabilities.",
     lifetimeAccess: "LIFETIME ACCESS",
     demoFree: "Special Build",
     activatePro: "Activate Pro Mode",
     deactivatePro: "Deactivate Pro Mode (Demo)",
-    proFeat1: "Unlimited PDF Text Editing & High-Res Export",
+    proFeat1: "High-Resolution Image & PDF Processing",
     proFeat2: "100% Ad-Free Clean Commercial Experience",
     proFeat3: "Batch Image Processing & High Quality Resizing",
-    proFeat4: "Unlimited Expense History & JSON Data Backup",
+    proFeat4: "Offline Privacy & JSON Data Backup",
     proFeat5: "Priority Client-Side Processing",
     monetizationArchitecture: "Monetization Architecture",
     monetizationDesc: "Built with an extensible AdService abstraction ready to integrate Google AdMob, Google AdSense, or custom sponsorship slots.",
@@ -68,7 +66,7 @@ const translations = {
     themeDesc: "Select light blue, dark, or system mode",
     setData: "Data & Storage",
     backupData: "Backup Data",
-    backupDataDesc: "Export expenses, QR history, and preferences to JSON",
+    backupDataDesc: "Export QR history, preferences, and calculator data to JSON",
     restoreData: "Restore Data",
     restoreDataDesc: "Import your saved backup JSON file",
     clearData: "Clear History & Data",
@@ -81,31 +79,15 @@ const translations = {
     setAbout: "About",
     shareApp: "Share ToolBox Pro",
     shareAppDesc: "Share this progressive web app with friends & colleagues",
-    editTextTitle: "Edit PDF Text",
-    originalText: "Original PDF Text",
-    replacementText: "New Replacement Text",
-    fontSize: "Font Size",
-    textColor: "Text Color",
-    coverColor: "Cover Color",
-    styleOptions: "Style",
-    editPreserveHint: "The original text will be covered cleanly and the new text placed at the exact same coordinates.",
-    cancel: "Cancel",
-    applyChange: "Apply Change",
-    signatureTitle: "Draw Your Signature",
-    sigHint: "Draw with your finger or stylus inside the box below.",
-    insertSignature: "Insert Signature",
-    pageManagerTitle: "Page Manager",
-    addBlankPage: "+ Add Blank",
-    done: "Done",
     privacy1Title: "1. 100% Local Processing",
-    privacy1Desc: "ToolBox Pro prioritizes your privacy. Your PDF documents, images, expenses, and QR codes are processed locally in your browser's memory. No uploaded files are stored on external application servers.",
+    privacy1Desc: "ToolBox Pro prioritizes your privacy. Your documents, images, and QR codes are processed locally in your browser's memory. No uploaded files are stored on external application servers.",
     privacy2Title: "2. No Personal Data Harvesting",
     privacy2Desc: "We do not collect personal names, files, passwords, or transaction data. Everything stays on your phone or computer unless you explicitly export or share it.",
     privacy3Title: "3. Camera Access",
     privacy3Desc: "Camera permissions are requested solely for client-side QR code scanning and are never streamed or recorded.",
     close: "Close",
 
-    // Tool Titles & Descriptions
+    // Tool Titles & Descriptions (16 Tools)
     tool_image_compressor: "Image Compressor",
     tool_image_compressor_desc: "Reduce image file size quickly while preserving clarity.",
     tool_image_resize: "Image Resize",
@@ -114,10 +96,6 @@ const translations = {
     tool_image_crop_desc: "Crop photos using square, 16:9, or freehand frame.",
     tool_image_convert: "Image Convert",
     tool_image_convert_desc: "Convert image files to PNG, JPEG, or WebP formats.",
-    tool_pdf_text_editor: "PDF Text Editor",
-    tool_pdf_text_editor_desc: "Edit text and numbers inside PDF files with precision.",
-    tool_image_to_pdf: "Image → PDF",
-    tool_image_to_pdf_desc: "Convert multiple photos into a single clean PDF document.",
     tool_pdf_merge: "PDF Merge",
     tool_pdf_merge_desc: "Combine multiple PDF files into one complete document.",
     tool_pdf_split: "PDF Split",
@@ -141,19 +119,7 @@ const translations = {
     tool_discount_calculator: "Discount Calculator",
     tool_discount_calculator_desc: "Determine sale savings, discount percentages, and final prices.",
     tool_emi_calculator: "EMI Calculator",
-    tool_emi_calculator_desc: "Calculate monthly loan installments and total interest payable.",
-    tool_bmi_calculator: "BMI Calculator",
-    tool_bmi_calculator_desc: "Check Body Mass Index and health category with visual meter.",
-    tool_unit_converter: "Unit Converter",
-    tool_unit_converter_desc: "Convert length, weight, speed, temperature, and data units.",
-    tool_password_generator: "Password Generator",
-    tool_password_generator_desc: "Generate secure, random passwords with custom rules.",
-    tool_text_counter: "Text Counter",
-    tool_text_counter_desc: "Count words, characters, sentences, and estimated reading time.",
-    tool_random_number: "Random Number Generator",
-    tool_random_number_desc: "Generate fair random numbers within your custom range.",
-    tool_expense_tracker: "Expense Tracker",
-    tool_expense_tracker_desc: "Track daily spending with categories & local summaries."
+    tool_emi_calculator_desc: "Calculate monthly loan installments and total interest payable."
   },
 
   bn: {
@@ -162,7 +128,7 @@ const translations = {
     proBadge: "প্রো",
     proCardTag: "প্রিমিয়াম",
     proCardTitle: "টুলবক্স প্রো আনলক করুন",
-    proCardDesc: "বিজ্ঞাপনহীন, আনলিমিটেড পিডিএফ এডিটিং এবং প্রায়োরিটি সুবিধা।",
+    proCardDesc: "বিজ্ঞাপনহীন, প্রিমিয়াম সুবিধা ও প্রায়োরিটি স্পিড।",
     upgradeNow: "আপগ্রেড",
     language: "ভাষা / Language",
     theme: "থিম / Theme",
@@ -177,35 +143,33 @@ const translations = {
     heroBadge: "⚡ দ্রুত এবং কার্যকারী",
     heroTitle: "কাজ করুন আরও সহজে ও স্মার্টলি",
     heroSubtitle: "প্রয়োজনীয় সব টুল এখন এক জায়গায়।",
-    openPdfEditor: "পিডিএফ টেক্সট এডিটর",
-    exploreAllTools: "২৪+ টুল দেখুন",
-    searchPlaceholder: "যেকোনো টুল খুঁজুন (যেমন: পিডিএফ, ছবি, জিএসটি, কিউআর)...",
+    heroActionBtn: "ইমেজ কম্প্রেসার",
+    exploreAllTools: "১৬টি টুল দেখুন",
+    searchPlaceholder: "যেকোনো টুল খুঁজুন (যেমন: ছবি, জিএসটি, কিউআর, পিডিএফ)...",
     quickActions: "কুইক অ্যাকশন",
     recentTools: "সম্প্রতি ব্যবহৃত",
     popularTools: "জনপ্রিয় টুলসমূহ",
-    viewAll: "সব দেখুন (২৪)",
+    viewAll: "সব দেখুন (১৬)",
     clear: "মুছুন",
-    starFeature: "প্রধান ফিচার",
+    starFeature: "জনপ্রিয়",
     openTool: "টুল খুলুন →",
-    allToolsTitle: "সকল ২৪টি টুল",
+    allToolsTitle: "সকল ১৬টি টুল",
     allToolsSubtitle: "একটি ক্যাটাগরি বেছে নিন অথবা যেকোনো টুলে ট্যাপ করুন।",
-    catAll: "সব (২৪)",
+    catAll: "সব (১৬)",
     catImage: "🖼️ ছবি (৪)",
-    catPdf: "📄 পিডিএফ (৫)",
+    catPdf: "📄 পিডিএফ (৩)",
     catQr: "📱 কিউআর (৩)",
-    catCalc: "🧮 ক্যালকুলেটর (৭)",
-    catUtility: "🛠️ ইউটিলিটি (৪)",
-    catMoney: "💵 টাকা-পয়সা (১)",
+    catCalc: "🧮 ক্যালকুলেটর (৬)",
     proHeroTitle: "টুলবক্স প্রো-তে আপগ্রেড করুন",
     proHeroDesc: "পেশাদার ক্ষমতার সাথে আপনার কাজের গতি বাড়িয়ে নিন।",
     lifetimeAccess: "লাইফটাইম অ্যাক্সেস",
     demoFree: "স্পেশাল বিল্ড",
     activatePro: "প্রো মোড চালু করুন",
     deactivatePro: "প্রো মোড বন্ধ করুন (ডেমো)",
-    proFeat1: "আনলিমিটেড পিডিএফ টেক্সট এডিটিং ও এক্সপোর্ট",
+    proFeat1: "উচ্চমানের ইমেজ ও পিডিএফ প্রসেসিং",
     proFeat2: "১০০% বিজ্ঞাপনহীন প্রিমিয়াম ইন্টারফেস",
     proFeat3: "উচ্চমানের ব্যাচ ইমেজ প্রসেসিং",
-    proFeat4: "আনলিমিটেড খরচ হিসেব ও ব্যাকআপ",
+    proFeat4: "সম্পূর্ণ অফলাইন প্রাইভেসি ও ব্যাকআপ",
     proFeat5: "দ্রুততম ক্লায়েন্ট-সাইড প্রসেসিং",
     monetizationArchitecture: "মনিটাইজেশন আর্কিটেকচার",
     monetizationDesc: "ভবিষ্যতে গুগল অ্যাডমব অথবা স্পনসরশিপ যুক্ত করার জন্য উপযুক্ত অ্যাডসার্ভিস আর্কিটেকচার।",
@@ -216,7 +180,7 @@ const translations = {
     themeDesc: "লাইট ব্লু, ডার্ক বা সিস্টেম মোড বাছাই করুন",
     setData: "ডেটা ও স্টোরেজ",
     backupData: "ডেটা ব্যাকআপ",
-    backupDataDesc: "খরচের হিসেব ও কিউআর হিস্ট্রি JSON ফাইলে এক্সপোর্ট করুন",
+    backupDataDesc: "কিউআর হিস্ট্রি ও সেটিংস JSON ফাইলে এক্সপোর্ট করুন",
     restoreData: "ডেটা রিস্টোর",
     restoreDataDesc: "সংরক্ষিত JSON ব্যাকআপ ফাইল ইমপোর্ট করুন",
     clearData: "সকল হিস্ট্রি ও ডেটা মুছুন",
@@ -229,26 +193,10 @@ const translations = {
     setAbout: "অ্যাপ সম্পর্কিত",
     shareApp: "টুলবক্স প্রো শেয়ার করুন",
     shareAppDesc: "বন্ধুদের সাথে এই সুবিধাজনক ওয়েব অ্যাপটি শেয়ার করুন",
-    editTextTitle: "পিডিএফ লেখা পরিবর্তন করুন",
-    originalText: "আসল পিডিএফ লেখা",
-    replacementText: "নতুন প্রতিস্থাপন লেখা",
-    fontSize: "ফন্ট সাইজ",
-    textColor: "লেখার রঙ",
-    coverColor: "কভার রঙ",
-    styleOptions: "স্টাইল",
-    editPreserveHint: "মূল লেখাটি পরিষ্কারভাবে ঢেকে নতুন লেখাটি হুবহু একই স্থানে বসানো হবে।",
-    cancel: "বাতিল",
-    applyChange: "পরিবর্তন প্রয়োগ করুন",
-    signatureTitle: "স্বাক্ষর আঁকুন",
-    sigHint: "নিচের ঘরে আঙুল বা স্টাইলাস দিয়ে স্বাক্ষর করুন।",
-    insertSignature: "স্বাক্ষর যুক্ত করুন",
-    pageManagerTitle: "পেজ ম্যানেজার",
-    addBlankPage: "+ খালি পেজ যোগ",
-    done: "সম্পন্ন",
     privacy1Title: "১. ১০০% লোকাল প্রসেসিং",
-    privacy1Desc: "টুলবক্স প্রো আপনার প্রাইভেসির সর্বাধিক সম্মান করে। আপনার কোনো পিডিএফ বা ছবি কোনো সার্ভারে পাঠানো হয় না, সম্পূর্ণ ব্রাউজারে তৈরি হয়।",
+    privacy1Desc: "টুলবক্স প্রো আপনার প্রাইভেসির সর্বাধিক সম্মান করে। আপনার কোনো ফাইল কোনো সার্ভারে পাঠানো হয় না, সম্পূর্ণ ব্রাউজারে তৈরি হয়।",
     privacy2Title: "২. কোনো ব্যক্তিগত তথ্য সংগ্রহ নয়",
-    privacy2Desc: "আমরা নাম, পাসওয়ার্ড বা লেনদেনের কোনো তথ্য সংগ্রহ বা বিক্রি করি না।",
+    privacy2Desc: "আমরা নাম, পাসওয়ার্ড বা গোপন কোনো তথ্য সংগ্রহ বা বিক্রি করি না।",
     privacy3Title: "৩. ক্যামেরা পারমিশন",
     privacy3Desc: "ক্যামেরা কেবল অন-ডিভাইস কিউআর কোড স্ক্যান করতে ব্যবহার হয়।",
     close: "বন্ধ করুন",
@@ -261,10 +209,6 @@ const translations = {
     tool_image_crop_desc: "বর্গাকার, ১৬:৯ বা কাস্টম ফ্রেমে ছবি কেটে নিন।",
     tool_image_convert: "ইমেজ কনভার্ট",
     tool_image_convert_desc: "ছবি PNG, JPEG অথবা WebP ফরম্যাটে রূপান্তর করুন।",
-    tool_pdf_text_editor: "পিডিএফ টেক্সট এডিটর",
-    tool_pdf_text_editor_desc: "পিডিএফ ফাইলের ভেতরের লেখা ও সংখ্যা সহজে এডিট করুন।",
-    tool_image_to_pdf: "ছবি থেকে পিডিএফ",
-    tool_image_to_pdf_desc: "একাধিক ছবি একত্রিত করে একটি পরিচ্ছন্ন পিডিএফ তৈরি করুন।",
     tool_pdf_merge: "পিডিএফ মার্জ",
     tool_pdf_merge_desc: "একাধিক পিডিএফ ফাইল জোড়া দিয়ে একটি ফাইল বানান।",
     tool_pdf_split: "পিডিএফ স্প্লিট",
@@ -288,21 +232,35 @@ const translations = {
     tool_discount_calculator: "ছাড় / ডিসকাউন্ট ক্যালকুলেটর",
     tool_discount_calculator_desc: "পণ্যের ছাড় ও চূড়ান্ত বিক্রয়মূল্য নির্ধারণ করুন।",
     tool_emi_calculator: "ইএমআই ক্যালকুলেটর",
-    tool_emi_calculator_desc: "ঋণের মাসিক কিস্তি এবং মোট সুদের নিখুঁত হিসাব।",
-    tool_bmi_calculator: "বিএমআই ক্যালকুলেটর",
-    tool_bmi_calculator_desc: "শরীরের উচ্চতা ও ওজনের স্বাস্থ্যকর সূচক পরিমাপ।",
-    tool_unit_converter: "একক রূপান্তরকারী",
-    tool_unit_converter_desc: "দৈর্ঘ্য, ওজন, গতি, তাপমাত্রা এবং ডেটা রূপান্তর করুন।",
-    tool_password_generator: "পাসওয়ার্ড জেনারেটর",
-    tool_password_generator_desc: "সুরক্ষিত ও জটিল র‍্যান্ডম পাসওয়ার্ড তৈরি করুন।",
-    tool_text_counter: "টেক্সট কাউন্টার",
-    tool_text_counter_desc: "শব্দ, অক্ষর, বাক্য এবং আনুমানিক পড়ার সময় মাপুন।",
-    tool_random_number: "র‍্যান্ডম নম্বর",
-    tool_random_number_desc: "নির্ধারিত সীমার মধ্যে র‍্যান্ডম সংখ্যা লটারি করুন।",
-    tool_expense_tracker: "খরচের খাতা",
-    tool_expense_tracker_desc: "দৈনন্দিন আয়-ব্যয় ক্যাটাগরিভিত্তিক লিপিবদ্ধ ও পর্যালোচনা করুন।"
+    tool_emi_calculator_desc: "ঋণের মাসিক কিস্তি এবং মোট সুদের নিখুঁত হিসাব।"
   }
 };
+
+// List of completely removed tools
+const REMOVED_TOOL_IDS = [
+  'image-to-pdf',
+  'expense-tracker',
+  'pdf-text-editor',
+  'random-number',
+  'random-number-generator',
+  'text-counter',
+  'password-generator',
+  'unit-converter',
+  'bmi-calculator'
+];
+
+// Sanitize saved recents from localStorage so deleted tools never reappear
+function getSanitizedRecents() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('tb_recents') || '[]');
+    if (!Array.isArray(raw)) return [];
+    const cleaned = raw.filter((id) => !REMOVED_TOOL_IDS.includes(id));
+    localStorage.setItem('tb_recents', JSON.stringify(cleaned));
+    return cleaned;
+  } catch (e) {
+    return [];
+  }
+}
 
 // Global App State
 const AppState = {
@@ -310,7 +268,7 @@ const AppState = {
   lang: localStorage.getItem('tb_lang') || 'en',
   theme: localStorage.getItem('tb_theme') || 'light',
   isPro: localStorage.getItem('tb_is_pro') === 'true',
-  recentTools: JSON.parse(localStorage.getItem('tb_recents') || '[]'),
+  recentTools: getSanitizedRecents(),
   currentTab: 'home',
   activeToolId: null
 };
@@ -447,6 +405,12 @@ function closeDrawer() {
 
 // Workspace Management (Opening Tools)
 function openToolWorkspace(toolId) {
+  // If removed tool or unknown tool, safely redirect to Tools catalog
+  if (!toolId || REMOVED_TOOL_IDS.includes(toolId) || !ALL_TOOLS.some((t) => t.id === toolId)) {
+    switchTab('tools');
+    return;
+  }
+
   const ws = document.getElementById('view-tool-workspace');
   const titleEl = document.getElementById('workspace-tool-title');
   const catEl = document.getElementById('workspace-tool-category');
@@ -458,7 +422,7 @@ function openToolWorkspace(toolId) {
   // Look up metadata
   const tool = ALL_TOOLS.find((t) => t.id === toolId);
   if (!tool) {
-    showToast('Tool not found', 'error');
+    switchTab('tools');
     return;
   }
 
@@ -469,9 +433,7 @@ function openToolWorkspace(toolId) {
   bodyEl.innerHTML = '';
 
   // Delegate rendering to corresponding module
-  if (toolId === 'pdf-text-editor') {
-    if (window.initPdfEditorTool) window.initPdfEditorTool(bodyEl);
-  } else if (['image-compressor', 'image-resize', 'image-crop', 'image-convert', 'image-to-pdf', 'pdf-merge', 'pdf-split', 'pdf-to-image'].includes(toolId)) {
+  if (['image-compressor', 'image-resize', 'image-crop', 'image-convert', 'pdf-merge', 'pdf-split', 'pdf-to-image'].includes(toolId)) {
     if (window.renderMediaTool) window.renderMediaTool(toolId, bodyEl);
   } else {
     if (window.renderCalcOrUtilityTool) window.renderCalcOrUtilityTool(toolId, bodyEl);
@@ -501,7 +463,8 @@ function getToolDesc(toolId) {
 
 // Recent Tools in LocalStorage
 function recordRecentTool(toolId) {
-  let list = AppState.recentTools.filter((id) => id !== toolId);
+  if (REMOVED_TOOL_IDS.includes(toolId) || !ALL_TOOLS.some((t) => t.id === toolId)) return;
+  let list = AppState.recentTools.filter((id) => id !== toolId && !REMOVED_TOOL_IDS.includes(id));
   list.unshift(toolId);
   if (list.length > 8) list.pop();
   AppState.recentTools = list;
@@ -513,6 +476,9 @@ function renderRecentTools() {
   const container = document.getElementById('home-recent-list');
   const section = document.getElementById('home-recent-section');
   if (!container) return;
+
+  // Ensure recents only contains valid remaining tools
+  AppState.recentTools = AppState.recentTools.filter((id) => ALL_TOOLS.some((t) => t.id === id));
 
   if (AppState.recentTools.length === 0) {
     section.style.display = 'none';
@@ -547,7 +513,6 @@ function exportBackupJSON() {
       isPro: AppState.isPro
     },
     recents: AppState.recentTools,
-    expenses: JSON.parse(localStorage.getItem('tb_expenses') || '[]'),
     qrHistory: JSON.parse(localStorage.getItem('tb_qr_history') || '[]')
   };
 
@@ -574,12 +539,9 @@ function restoreBackupJSON(file) {
           localStorage.setItem('tb_is_pro', data.settings.isPro);
         }
       }
-      if (data.recents) {
-        AppState.recentTools = data.recents;
-        localStorage.setItem('tb_recents', JSON.stringify(data.recents));
-      }
-      if (data.expenses) {
-        localStorage.setItem('tb_expenses', JSON.stringify(data.expenses));
+      if (data.recents && Array.isArray(data.recents)) {
+        AppState.recentTools = data.recents.filter((id) => ALL_TOOLS.some((t) => t.id === id));
+        localStorage.setItem('tb_recents', JSON.stringify(AppState.recentTools));
       }
       if (data.qrHistory) {
         localStorage.setItem('tb_qr_history', JSON.stringify(data.qrHistory));
@@ -594,49 +556,38 @@ function restoreBackupJSON(file) {
   reader.readAsText(file);
 }
 
-// Central Tool Registry (All 24 Tools)
+// Central Tool Registry (All 16 Remaining Tools)
 const ALL_TOOLS = [
-  // CATEGORY 1: IMAGE TOOLS
-  { id: 'image-compressor', category: 'image', emoji: '🗜️', accent: 'green-accent' },
+  // CATEGORY 1: IMAGE TOOLS (4 tools)
+  { id: 'image-compressor', category: 'image', emoji: '🗜️', accent: 'green-accent', featured: true },
   { id: 'image-resize', category: 'image', emoji: '📐', accent: 'cyan-accent' },
   { id: 'image-crop', category: 'image', emoji: '✂️', accent: 'rose-accent' },
   { id: 'image-convert', category: 'image', emoji: '🔄', accent: 'indigo-accent' },
 
-  // CATEGORY 2: PDF TOOLS
-  { id: 'pdf-text-editor', category: 'pdf', emoji: '✏️', accent: 'blue-accent', featured: true },
-  { id: 'image-to-pdf', category: 'pdf', emoji: '📄', accent: 'cyan-accent' },
+  // CATEGORY 2: PDF TOOLS (3 tools)
   { id: 'pdf-merge', category: 'pdf', emoji: '📑', accent: 'purple-accent' },
   { id: 'pdf-split', category: 'pdf', emoji: '✂️', accent: 'orange-accent' },
   { id: 'pdf-to-image', category: 'pdf', emoji: '🖼️', accent: 'emerald-accent' },
 
-  // CATEGORY 3: QR TOOLS
+  // CATEGORY 3: QR TOOLS (3 tools)
   { id: 'qr-scanner', category: 'qr', emoji: '📷', accent: 'purple-accent' },
   { id: 'qr-generator', category: 'qr', emoji: '📱', accent: 'blue-accent' },
   { id: 'qr-history', category: 'qr', emoji: '📜', accent: 'amber-accent' },
 
-  // CATEGORY 4: CALCULATORS
+  // CATEGORY 4: CALCULATORS (6 tools)
   { id: 'calculator', category: 'calculator', emoji: '🔢', accent: 'blue-accent' },
   { id: 'gst-calculator', category: 'calculator', emoji: '🏷️', accent: 'orange-accent' },
   { id: 'percentage-calculator', category: 'calculator', emoji: '％', accent: 'emerald-accent' },
   { id: 'age-calculator', category: 'calculator', emoji: '🎂', accent: 'rose-accent' },
   { id: 'discount-calculator', category: 'calculator', emoji: '🏷️', accent: 'cyan-accent' },
-  { id: 'emi-calculator', category: 'calculator', emoji: '🏦', accent: 'indigo-accent' },
-  { id: 'bmi-calculator', category: 'calculator', emoji: '⚖️', accent: 'purple-accent' },
-
-  // CATEGORY 5: UTILITY
-  { id: 'unit-converter', category: 'utility', emoji: '📏', accent: 'emerald-accent' },
-  { id: 'password-generator', category: 'utility', emoji: '🔑', accent: 'rose-accent' },
-  { id: 'text-counter', category: 'utility', emoji: '📝', accent: 'cyan-accent' },
-  { id: 'random-number', category: 'utility', emoji: '🎲', accent: 'amber-accent' },
-
-  // CATEGORY 6: MONEY
-  { id: 'expense-tracker', category: 'money', emoji: '💰', accent: 'emerald-accent' }
+  { id: 'emi-calculator', category: 'calculator', emoji: '🏦', accent: 'indigo-accent' }
 ];
 
 window.APP_NAME = APP_NAME;
 window.AppState = AppState;
 window.translations = translations;
 window.ALL_TOOLS = ALL_TOOLS;
+window.REMOVED_TOOL_IDS = REMOVED_TOOL_IDS;
 window.setLanguage = setLanguage;
 window.setTheme = setTheme;
 window.switchTab = switchTab;

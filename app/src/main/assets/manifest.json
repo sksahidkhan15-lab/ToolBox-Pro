@@ -1,7 +1,7 @@
 {
   "short_name": "ToolBox Pro",
   "name": "ToolBox Pro - All-in-One Utility",
-  "description": "Premium utility toolbox with PDF text editor, image tools, QR tools, calculators, and expense tracker.",
+  "description": "Premium utility toolbox with image tools, PDF utilities, QR tools, and calculators.",
   "icons": [
     {
       "src": "./assets/icon-192.png",

@@ -140,17 +140,17 @@
             <h1 class="hero-title" data-i18n="heroTitle">Work Smarter, Not Harder</h1>
             <p class="hero-subtitle" data-i18n="heroSubtitle">All the useful tools you need in one app.</p>
             <div class="hero-actions">
-              <button class="btn btn-primary" id="btn-hero-pdf" data-open-tool="pdf-text-editor">
-                <svg viewBox="0 0 24 24" class="svg-icon-btn"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                <span data-i18n="openPdfEditor">PDF Text Editor</span>
+              <button class="btn btn-primary" id="btn-hero-action" data-open-tool="image-compressor">
+                <svg viewBox="0 0 24 24" class="svg-icon-btn"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                <span data-i18n="heroActionBtn">Compress Image</span>
               </button>
               <button class="btn btn-secondary" id="btn-hero-all-tools" data-tab="tools">
-                <span data-i18n="exploreAllTools">Explore 24+ Tools</span>
+                <span data-i18n="exploreAllTools">Explore 16 Tools</span>
               </button>
             </div>
           </div>
           <div class="hero-illustration">
-            <div class="floating-tool-icon icon-1">📄</div>
+            <div class="floating-tool-icon icon-1">🗜️</div>
             <div class="floating-tool-icon icon-2">🖼️</div>
             <div class="floating-tool-icon icon-3">📱</div>
             <div class="floating-tool-icon icon-4">⚡</div>
@@ -161,7 +161,7 @@
         <div class="search-box-wrap">
           <div class="search-box">
             <svg viewBox="0 0 24 24" class="search-icon"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-            <input type="text" id="home-search-input" class="search-input" placeholder="Search any tool (e.g. PDF, Image, GST, QR)..." data-i18n-ph="searchPlaceholder">
+            <input type="text" id="home-search-input" class="search-input" placeholder="Search any tool (e.g. Image, GST, QR, PDF)..." data-i18n-ph="searchPlaceholder">
             <button id="home-search-clear" class="search-clear hidden">&times;</button>
           </div>
         </div>
@@ -175,10 +175,6 @@
             <h3 class="section-title" data-i18n="quickActions">Quick Actions</h3>
           </div>
           <div class="quick-actions-row">
-            <button class="quick-action-pill" data-open-tool="pdf-text-editor">
-              <span class="qa-icon">✏️</span>
-              <span class="qa-text" data-i18n="tool_pdf_text_editor">PDF Text Editor</span>
-            </button>
             <button class="quick-action-pill" data-open-tool="image-compressor">
               <span class="qa-icon">🗜️</span>
               <span class="qa-text" data-i18n="tool_image_compressor">Compress Image</span>
@@ -191,9 +187,13 @@
               <span class="qa-icon">🏷️</span>
               <span class="qa-text" data-i18n="tool_gst_calculator">GST Calc</span>
             </button>
-            <button class="quick-action-pill" data-open-tool="expense-tracker">
-              <span class="qa-icon">💰</span>
-              <span class="qa-text" data-i18n="tool_expense_tracker">Expenses</span>
+            <button class="quick-action-pill" data-open-tool="pdf-merge">
+              <span class="qa-icon">📑</span>
+              <span class="qa-text" data-i18n="tool_pdf_merge">PDF Merge</span>
+            </button>
+            <button class="quick-action-pill" data-open-tool="calculator">
+              <span class="qa-icon">🔢</span>
+              <span class="qa-text" data-i18n="tool_calculator">Calculator</span>
             </button>
           </div>
         </div>
@@ -213,27 +213,12 @@
         <div class="section-block">
           <div class="section-header">
             <h3 class="section-title" data-i18n="popularTools">Popular Tools</h3>
-            <button class="section-link-btn" data-tab="tools" data-i18n="viewAll">View All (24)</button>
+            <button class="section-link-btn" data-tab="tools" data-i18n="viewAll">View All (16)</button>
           </div>
           <div class="tool-grid" id="home-popular-grid">
-            <!-- Highlighted Tool: PDF TEXT EDITOR -->
-            <div class="tool-card featured-card" data-open-tool="pdf-text-editor">
-              <div class="featured-ribbon" data-i18n="starFeature">CORE FEATURE</div>
-              <div class="tool-card-top">
-                <div class="tool-icon-box blue-accent">
-                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M9 13h6 M9 17h4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-                </div>
-                <span class="tool-category-badge" data-i18n="catPdf">PDF Tools</span>
-              </div>
-              <h4 class="tool-title" data-i18n="tool_pdf_text_editor">PDF Text Editor</h4>
-              <p class="tool-desc" data-i18n="tool_pdf_text_editor_desc">Edit text and numbers inside PDF files with precision.</p>
-              <div class="tool-card-footer">
-                <span class="tool-action-link" data-i18n="openTool">Open Editor &rarr;</span>
-              </div>
-            </div>
-
-            <!-- Image Compressor -->
-            <div class="tool-card" data-open-tool="image-compressor">
+            <!-- Highlighted Tool: Image Compressor -->
+            <div class="tool-card featured-card" data-open-tool="image-compressor">
+              <div class="featured-ribbon" data-i18n="starFeature">POPULAR</div>
               <div class="tool-card-top">
                 <div class="tool-icon-box green-accent">
                   <svg viewBox="0 0 24 24" class="tool-svg"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
@@ -242,6 +227,21 @@
               </div>
               <h4 class="tool-title" data-i18n="tool_image_compressor">Image Compressor</h4>
               <p class="tool-desc" data-i18n="tool_image_compressor_desc">Reduce image file size quickly while preserving clarity.</p>
+              <div class="tool-card-footer">
+                <span class="tool-action-link" data-i18n="openTool">Open Tool &rarr;</span>
+              </div>
+            </div>
+
+            <!-- PDF Merge -->
+            <div class="tool-card" data-open-tool="pdf-merge">
+              <div class="tool-card-top">
+                <div class="tool-icon-box purple-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <span class="tool-category-badge" data-i18n="catPdf">PDF Tools</span>
+              </div>
+              <h4 class="tool-title" data-i18n="tool_pdf_merge">PDF Merge</h4>
+              <p class="tool-desc" data-i18n="tool_pdf_merge_desc">Combine multiple PDF files into one complete document.</p>
             </div>
 
             <!-- QR Scanner -->
@@ -268,28 +268,16 @@
               <p class="tool-desc" data-i18n="tool_gst_calculator_desc">Calculate GST addition & removal with exact tax split.</p>
             </div>
 
-            <!-- Image to PDF -->
-            <div class="tool-card" data-open-tool="image-to-pdf">
+            <!-- Calculator -->
+            <div class="tool-card" data-open-tool="calculator">
               <div class="tool-card-top">
-                <div class="tool-icon-box cyan-accent">
-                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                <div class="tool-icon-box blue-accent">
+                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm2 4h6m-6 4h2m2 0h2m-6 4h2m2 0h2m-6 4h2m2 0h2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
                 </div>
-                <span class="tool-category-badge" data-i18n="catPdf">PDF Tools</span>
+                <span class="tool-category-badge" data-i18n="catCalc">Calculators</span>
               </div>
-              <h4 class="tool-title" data-i18n="tool_image_to_pdf">Image → PDF</h4>
-              <p class="tool-desc" data-i18n="tool_image_to_pdf_desc">Convert multiple photos into a single clean PDF document.</p>
-            </div>
-
-            <!-- Expense Tracker -->
-            <div class="tool-card" data-open-tool="expense-tracker">
-              <div class="tool-card-top">
-                <div class="tool-icon-box emerald-accent">
-                  <svg viewBox="0 0 24 24" class="tool-svg"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 12v-2m0 0c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                </div>
-                <span class="tool-category-badge" data-i18n="catMoney">Money</span>
-              </div>
-              <h4 class="tool-title" data-i18n="tool_expense_tracker">Expense Tracker</h4>
-              <p class="tool-desc" data-i18n="tool_expense_tracker_desc">Track daily spending with categories & local summaries.</p>
+              <h4 class="tool-title" data-i18n="tool_calculator">Calculator</h4>
+              <p class="tool-desc" data-i18n="tool_calculator_desc">Everyday standard calculator with history tape.</p>
             </div>
           </div>
         </div>
@@ -310,19 +298,17 @@
       <!-- ================= 2. ALL TOOLS SCREEN ================= -->
       <section id="view-tools" class="view-screen">
         <div class="tools-page-header">
-          <h2 class="page-title" data-i18n="allToolsTitle">All 24 Tools</h2>
+          <h2 class="page-title" data-i18n="allToolsTitle">All 16 Tools</h2>
           <p class="page-subtitle" data-i18n="allToolsSubtitle">Select a category or tap any utility to begin.</p>
         </div>
 
         <!-- Category Filter Tabs -->
         <div class="category-tabs-scroll">
-          <button class="cat-pill active" data-cat="all" data-i18n="catAll">All (24)</button>
+          <button class="cat-pill active" data-cat="all" data-i18n="catAll">All (16)</button>
           <button class="cat-pill" data-cat="image" data-i18n="catImage">🖼️ Image (4)</button>
-          <button class="cat-pill" data-cat="pdf" data-i18n="catPdf">📄 PDF (5)</button>
+          <button class="cat-pill" data-cat="pdf" data-i18n="catPdf">📄 PDF (3)</button>
           <button class="cat-pill" data-cat="qr" data-i18n="catQr">📱 QR (3)</button>
-          <button class="cat-pill" data-cat="calculator" data-i18n="catCalc">🧮 Calculators (7)</button>
-          <button class="cat-pill" data-cat="utility" data-i18n="catUtility">🛠️ Utility (4)</button>
-          <button class="cat-pill" data-cat="money" data-i18n="catMoney">💵 Money (1)</button>
+          <button class="cat-pill" data-cat="calculator" data-i18n="catCalc">🧮 Calculators (6)</button>
         </div>
 
         <!-- Full Tools Grid -->
@@ -352,7 +338,7 @@
           <ul class="pro-features-list">
             <li>
               <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
-              <span data-i18n="proFeat1">Unlimited PDF Text Editing & High-Res Export</span>
+              <span data-i18n="proFeat1">High-Resolution Image & PDF Processing</span>
             </li>
             <li>
               <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
@@ -364,7 +350,7 @@
             </li>
             <li>
               <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
-              <span data-i18n="proFeat4">Unlimited Expense History & JSON Data Backup</span>
+              <span data-i18n="proFeat4">Offline Privacy & JSON Data Backup</span>
             </li>
             <li>
               <svg viewBox="0 0 20 20" class="check-svg"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/></svg>
@@ -425,7 +411,7 @@
           <div class="setting-item clickable" id="btn-backup-data">
             <div class="setting-item-info">
               <span class="setting-item-name" data-i18n="backupData">Backup Data</span>
-              <span class="setting-item-desc" data-i18n="backupDataDesc">Export expenses, QR history, and preferences to JSON</span>
+              <span class="setting-item-desc" data-i18n="backupDataDesc">Export QR history, preferences, and calculator data to JSON</span>
             </div>
             <svg viewBox="0 0 24 24" class="svg-chevron"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
           </div>
@@ -537,100 +523,6 @@
 
     <!-- ================= FLOATING DIALOGS & MODALS ================= -->
 
-    <!-- PDF Text Edit Inspector Modal -->
-    <div id="modal-pdf-text-edit" class="modal-backdrop hidden">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h4 data-i18n="editTextTitle">Edit PDF Text</h4>
-          <button class="modal-close" id="btn-close-pdf-text-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label class="form-label" data-i18n="originalText">Original PDF Text</label>
-            <div id="pdf-edit-original-text" class="text-preview-box"></div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-i18n="replacementText">New Replacement Text</label>
-            <textarea id="pdf-edit-new-text" class="form-textarea" rows="2" placeholder="Type new text..."></textarea>
-          </div>
-          <div class="form-row">
-            <div class="form-col">
-              <label class="form-label" data-i18n="fontSize">Font Size</label>
-              <div class="stepper-input">
-                <button type="button" id="btn-fs-minus">-</button>
-                <input type="number" id="pdf-edit-font-size" value="12" min="6" max="72">
-                <button type="button" id="btn-fs-plus">+</button>
-              </div>
-            </div>
-            <div class="form-col">
-              <label class="form-label" data-i18n="textColor">Text Color</label>
-              <input type="color" id="pdf-edit-color" value="#000000" class="form-color-picker">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-col">
-              <label class="form-label" data-i18n="coverColor">Cover Color</label>
-              <input type="color" id="pdf-edit-cover-color" value="#ffffff" class="form-color-picker">
-            </div>
-            <div class="form-col">
-              <label class="form-label" data-i18n="styleOptions">Style</label>
-              <div class="btn-group-toggle">
-                <button type="button" class="btn-toggle" id="btn-pdf-bold"><b>B</b></button>
-                <button type="button" class="btn-toggle" id="btn-pdf-italic"><i>I</i></button>
-              </div>
-            </div>
-          </div>
-          <p class="field-hint" data-i18n="editPreserveHint">The original text will be covered cleanly and the new text placed at the exact same coordinates.</p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" id="btn-cancel-pdf-text" data-i18n="cancel">Cancel</button>
-          <button class="btn btn-primary" id="btn-apply-pdf-text" data-i18n="applyChange">Apply Change</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PDF Signature Pad Modal -->
-    <div id="modal-signature-pad" class="modal-backdrop hidden">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h4 data-i18n="signatureTitle">Draw Your Signature</h4>
-          <button class="modal-close" id="btn-close-sig-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p class="field-hint" data-i18n="sigHint">Draw with your finger or stylus inside the box below.</p>
-          <div class="sig-canvas-wrapper">
-            <canvas id="sig-canvas" width="340" height="180"></canvas>
-          </div>
-          <div class="sig-color-options">
-            <button class="color-dot active" data-color="#000000" style="background:#000000;"></button>
-            <button class="color-dot" data-color="#0284c7" style="background:#0284c7;"></button>
-            <button class="color-dot" data-color="#1e3a8a" style="background:#1e3a8a;"></button>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" id="btn-clear-sig" data-i18n="clear">Clear</button>
-          <button class="btn btn-primary" id="btn-apply-sig" data-i18n="insertSignature">Insert Signature</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PDF Page Manager Modal -->
-    <div id="modal-page-manager" class="modal-backdrop hidden">
-      <div class="modal-card modal-lg">
-        <div class="modal-header">
-          <h4 data-i18n="pageManagerTitle">Page Manager</h4>
-          <button class="modal-close" id="btn-close-pm-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div id="pm-thumbnails-grid" class="thumbnails-grid"></div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" id="btn-pm-add-blank" data-i18n="addBlankPage">+ Add Blank</button>
-          <button class="btn btn-primary" id="btn-pm-done" data-i18n="done">Done</button>
-        </div>
-      </div>
-    </div>
-
     <!-- Privacy Policy Modal -->
     <div id="modal-privacy" class="modal-backdrop hidden">
       <div class="modal-card">
@@ -640,7 +532,7 @@
         </div>
         <div class="modal-body modal-scroll-body">
           <h5 data-i18n="privacy1Title">1. 100% Local Processing</h5>
-          <p data-i18n="privacy1Desc">ToolBox Pro prioritizes your privacy. Your PDF documents, images, expenses, and QR codes are processed locally in your browser's memory. No uploaded files are stored on external application servers.</p>
+          <p data-i18n="privacy1Desc">ToolBox Pro prioritizes your privacy. Your PDF documents, images, and QR codes are processed locally in your browser's memory. No uploaded files are stored on external application servers.</p>
           <h5 data-i18n="privacy2Title">2. No Personal Data Harvesting</h5>
           <p data-i18n="privacy2Desc">We do not collect personal names, files, passwords, or transaction data. Everything stays on your phone or computer unless you explicitly export or share it.</p>
           <h5 data-i18n="privacy3Title">3. Camera Access</h5>
@@ -659,7 +551,6 @@
 
   <!-- Modular Application Scripts -->
   <script src="./js/app-core.js"></script>
-  <script src="./js/pdf-editor.js"></script>
   <script src="./js/tools-media.js"></script>
   <script src="./js/tools-calculators.js"></script>
   <script src="./script.js"></script>

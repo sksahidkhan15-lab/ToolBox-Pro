@@ -7,7 +7,9 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.webkit.PermissionRequest
+import android.webkit.RenderProcessGoneDetail
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -16,6 +18,7 @@ import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import java.io.File
 
 class MainActivity : ComponentActivity() {
 
@@ -52,6 +55,29 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
+    // Explicitly disable hardware acceleration window flag
+    window.clearFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED)
+
+    // Pre-create Chromium Code Cache & HTTP Cache directories to prevent opendir / simple_index_file error
+    try {
+      val base = cacheDir
+      val cacheDirs = listOf(
+        File(base, "WebView/Default/HTTP Cache/Code Cache/js"),
+        File(base, "WebView/Default/HTTP Cache/Code Cache"),
+        File(base, "WebView/Default/HTTP Cache"),
+        File(base, "WebView/Default/Code Cache/js"),
+        File(base, "WebView/Default/Code Cache"),
+        File(base, "WebView/Default")
+      )
+      for (dir in cacheDirs) {
+        if (!dir.exists()) {
+          dir.mkdirs()
+        }
+      }
+    } catch (_: Exception) {
+      // Ignore directory creation failure
+    }
+
     // Request Camera permission for QR scanning if needed
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
       != PackageManager.PERMISSION_GRANTED) {
@@ -59,7 +85,7 @@ class MainActivity : ComponentActivity() {
     }
 
     val webView = WebView(this).apply {
-      // Use software rendering layer to avoid MESA DRM rendernode issues in headless/cloud emulator
+      // Use software rendering layer to avoid MESA DRM rendernode issues in cloud emulator
       setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
       settings.apply {
@@ -77,7 +103,12 @@ class MainActivity : ComponentActivity() {
         cacheMode = WebSettings.LOAD_DEFAULT
       }
 
-      webViewClient = WebViewClient()
+      webViewClient = object : WebViewClient() {
+        override fun onRenderProcessGone(view: WebView?, detail: RenderProcessGoneDetail?): Boolean {
+          // Gracefully prevent app crash if renderer process exits
+          return true
+        }
+      }
 
       webChromeClient = object : WebChromeClient() {
         override fun onShowFileChooser(
